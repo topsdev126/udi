@@ -1,0 +1,51 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap'); */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer utilities{
+  .toggle-checkbox:checked {
+      @apply right-0 border-red-600;
+      right: 0;
+      /* border-color: #68D391; */
+    }
+    .toggle-checkbox:checked + .toggle-label {
+      @apply bg-red-600;
+      /* background-color: #68D391; */
+    }
+}
+@layer components {
+  .rc-table-custom table {
+    width: 100%;
+  }
+
+  li.js-li {
+    display: inline-block;
+    padding: 7px;
+    font-size: 18px;
+  }
+
+  li.js-li.active {
+    color: white;
+    font-weight: 700;
+    background: purple;
+    border-radius: 6px;
+  }
+
+  ul.js-ul {
+    margin-top: 12px;
+    text-align: right;
+  }
+
+  .pure-modal .panel-heading {
+    @apply bg-purple-600!important;
+  }
+
+  p.product-title {
+    margin-top: 0px !important;
+  }
+}
+
+
