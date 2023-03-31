@@ -4,8 +4,8 @@ import BingMap from "@/components/BingMap";
 export default function Search() {
   const [results, setResults] = useState([]);
 
-  const [latitude, setLatitude] = useState( '36.072063');
-  const [longitude, setLlongitude] = useState('-119.007736' );
+  const [latitude, setLatitude] = useState(36.072063);
+  const [longitude, setLlongitude] = useState(-119.007736);
 
   const handleSearch = async (searchParams) => {
   const { topic, location, distance } = searchParams;
@@ -37,8 +37,8 @@ export default function Search() {
 
   const show_location = async (locations)=>{
     let location = locations.split(',');
-    setLatitude(location[1]);
-    setLlongitude(location[0]);
+    setLatitude(parseFloat(location[1]));
+    setLlongitude(parseFloat(location[0]));
     console.log(location)
   }
 
