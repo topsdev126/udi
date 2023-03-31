@@ -1,11 +1,15 @@
 import SearchForm from '../components/SearchForm';
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import BingMap from "@/components/BingMap";
 export default function Search() {
   const [results, setResults] = useState([]);
 
+  const [latitude, setLatitude] = useState( '36.072063');
+  const [longitude, setLlongitude] = useState('-119.007736' );
+
   const handleSearch = async (searchParams) => {
-    const { topic, location, distance } = searchParams;
+  const { topic, location, distance } = searchParams;
+    
 
     const api_key = 'AqZRa0FXlQBCUTxt0faLA6w9bfzdLnT5_HvyPiRVGKJzNyKhn37rD8_jpppGJ6mU'
     const response = await fetch(`https://dev.virtualearth.net/REST/v1/Locations?q=${topic},${location}&key=${api_key}`);
@@ -31,6 +35,14 @@ export default function Search() {
     setResults(formattedResults);
   };
 
+  const show_location = async (locations)=>{
+    let location = locations.split(',');
+    setLatitude(location[1]);
+    setLlongitude(location[0]);
+    console.log(location)
+  }
+
+
   return (
     <>
       <main className=" space-y-6">
@@ -38,7 +50,7 @@ export default function Search() {
         {results.length === 0 ? (
           <div className="flex  gap-6 w-full  ">
             <div className="mx-auto  rounded-lg ">
-              <h1 className="mx-3 text-lg font-semibold ">Not found result</h1>
+              <h1 className="mx-3 text-lg font-semibold ">Not found </h1>
 
             </div>
           </div>
@@ -48,8 +60,13 @@ export default function Search() {
             {results.map((result, index) => (<div key={index} className=" mx-auto overflow-hidden bg-white rounded-lg shadow-lg ">
 
 
-              <div className="flex items-center px-6 py-3 bg-red-500">
-                <h1 className="mx-3 text-lg font-semibold text-white">Go to Map </h1>
+              <div onClick={()=>{show_location(result.location)}} className="flex items-center px-6 py-3 bg-red-500">
+              <button className="inline-flex px-5 py-3 text-red-500 hover:text-red-600 focus:text-red-600 hover:bg-red-100 focus:bg-red-100 border border-red-500 rounded-md mb-3">
+              <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+              </svg>
+             show in map
+            </button>
 
               </div>
 
@@ -79,6 +96,8 @@ export default function Search() {
 
 
         )}
+        < br/>
+        <BingMap latitude={latitude} longitude={longitude} />
       </main>
     </>
   );
