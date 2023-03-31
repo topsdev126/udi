@@ -60,7 +60,7 @@ export default function Search() {
             {results.map((result, index) => (<div key={index} className=" mx-auto overflow-hidden bg-white rounded-lg shadow-lg ">
 
 
-              <div onClick={()=>{show_location(result.location)}} className="flex items-center px-6 py-3 bg-red-500">
+              <div onClick={()=>{show_location(result.location)}} className="flex items-center px-6 py-3 ">
               <button className="inline-flex px-5 py-3 text-red-500 hover:text-red-600 focus:text-red-600 hover:bg-red-100 focus:bg-red-100 border border-red-500 rounded-md mb-3">
               <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="flex-shrink-0 h-5 w-5 -ml-1 mt-0.5 mr-2">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
