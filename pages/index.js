@@ -12,7 +12,7 @@ export default function Search() {
     
 
     const api_key = 'AqZRa0FXlQBCUTxt0faLA6w9bfzdLnT5_HvyPiRVGKJzNyKhn37rD8_jpppGJ6mU'
-    const response = await fetch(`https://dev.virtualearth.net/REST/v1/Locations?q=${topic},${location}&key=${api_key}`);
+    const response = await fetch(`https://dev.virtualearth.net/REST/v1/DataSources/NavteqPOISearch?query=${topic},${location}&key=${api_key}`);
     const data = await response.json();
     const locations = data?.resourceSets[0]?.resources;
 
